@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\FormRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use DateTimeImmutable;
 
@@ -26,10 +28,14 @@ class Form
     #[ORM\Column]
     private ?DateTimeImmutable $updatedAt = null;
 
+    #[ORM\OneToMany(mappedBy: 'associatedForm', targetEntity: F28entry::class)]
+    private Collection $f28entries;
+
     public function __construct()
     {
         $this->createdAt = new DateTimeImmutable();
         $this->updatedAt = new DateTimeImmutable();
+        $this->f28entries = new ArrayCollection();
     }
     public function getId(): ?int
     {
@@ -80,6 +86,36 @@ class Form
     public function setUpdatedAt(DateTimeImmutable $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, F28entry>
+     */
+    public function getF28entries(): Collection
+    {
+        return $this->f28entries;
+    }
+
+    public function addF28entry(F28entry $f28entry): self
+    {
+        if (!$this->f28entries->contains($f28entry)) {
+            $this->f28entries->add($f28entry);
+            $f28entry->setAssociatedForm($this);
+        }
+
+        return $this;
+    }
+
+    public function removeF28entry(F28entry $f28entry): self
+    {
+        if ($this->f28entries->removeElement($f28entry)) {
+            // set the owning side to null (unless already changed)
+            if ($f28entry->getAssociatedForm() === $this) {
+                $f28entry->setAssociatedForm(null);
+            }
+        }
 
         return $this;
     }

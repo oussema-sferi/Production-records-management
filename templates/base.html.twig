@@ -40,8 +40,8 @@
                         <h6 class="dropdown-header d-flex align-items-center">
                             <img class="dropdown-user-img" src="{{ asset('assets/img/illustrations/profiles/profile-1.png') }}" />
                             <div class="dropdown-user-details">
-                                <div class="dropdown-user-details-name">KY</div>
-                                <div class="dropdown-user-details-email">ky@aol.com</div>
+                                <div class="dropdown-user-details-name">{{ app.user.firstName ~ ' ' ~ app.user.lastName }}</div>
+                                <div class="dropdown-user-details-email">{{ app.user.email }}</div>
                             </div>
                         </h6>
                         <div class="dropdown-divider"></div>
@@ -75,19 +75,20 @@
                             <div class="collapse" id="collapsePages" data-bs-parent="#accordionSidenav">
                                 <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPagesMenu">
                                     <a class="nav-link" href="{{ path('app_form_list') }}">Forms List</a>
+                                    <a class="nav-link" href="#">Create Form</a>
                                     <a class="nav-link" href="#">Data Entry</a>
                                 </nav>
                             </div>
                             <!-- Sidenav Accordion (Applications)-->
                             <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapseApps" aria-expanded="false" aria-controls="collapseApps">
                                 <div class="nav-link-icon"><i data-feather="globe"></i></div>
-                                Policies
+                                Policies Management
                                 <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
                             <div class="collapse" id="collapseApps" data-bs-parent="#accordionSidenav">
                                 <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavAppsMenu">
+                                    <a class="nav-link" href="{{ path('app_policy_list') }}">Policies List</a>
                                     <a class="nav-link" href="{{ path('app_policy_create') }}">Create Policy</a>
-                                    <a class="nav-link" href="{{ path('app_policy_list') }}">List Policies</a>
                                 </nav>
                             </div>
                             <!-- Sidenav Accordion (Applications)-->

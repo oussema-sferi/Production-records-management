@@ -16,12 +16,12 @@
                             Forms List
                         </h1>
                     </div>
-                    {#<div class="col-12 col-xl-auto mb-3">
+                    <div class="col-12 col-xl-auto mb-3">
                         <a class="btn btn-sm btn-light text-primary" href="blog-management-create-post.html">
                             <i class="me-1" data-feather="plus"></i>
                             Create New Form
                         </a>
-                    </div>#}
+                    </div>
                 </div>
             </div>
         </div>
@@ -57,7 +57,7 @@
                             <td>{{ form.createdAt|format_datetime() }}</td>
                             <td>{{ form.updatedAt|format_datetime() }}</td>
                             <td>
-                                <a class="btn btn-datatable btn-icon btn-transparent-dark me-2" href="#"><i data-feather="check"></i></a>
+                                <a class="btn btn-datatable btn-icon btn-transparent-dark me-2" href="{{ path('app_entries_list', {'id': form.id}) }}"><i data-feather="check"></i></a>
                                 {#<a class="btn btn-datatable btn-icon btn-transparent-dark me-2" href="#"><i data-feather="edit"></i></a>#}
                                 <a class="btn btn-datatable btn-icon btn-transparent-dark" href="#!"><i data-feather="trash-2"></i></a>
                             </td>

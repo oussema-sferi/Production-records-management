@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block body %}
-    <header class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10 ">
+    {#<header class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10 ">
         <div class="container-xl px-4">
             <div class="page-header-content pt-4">
                 <div class="row align-items-center justify-content-between">
@@ -20,11 +20,26 @@
                 </div>
             </div>
         </div>
+    </header>#}
+    <header class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10">
+        <div class="container-fluid px-4">
+            <div class="page-header-content pt-4">
+                <div class="row align-items-center justify-content-between">
+                    <div class="col-auto mt-4">
+                        <h1 class="page-header-title">
+                            <div class="page-header-icon"><i data-feather="layout"></i></div>
+                            FORM
+                        </h1>
+                        <div class="page-header-subtitle">{{ form.reference }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </header>
     <!-- Main page content-->
     <div class="container-fluid px-4 mt-n10">
         <div class="card mb-4">
-            <div class="card-header">Forms</div>
+            <div class="card-header">{{ form.title }}</div>
             <div class="card-body">
                 <table id="datatablesSimple">
                     <thead>
@@ -33,12 +48,13 @@
                         <th>Batch Number</th>
                         <th>Input Time</th>
                         <th>Input Quantity</th>
-                        <th>Input Temp°</th>
+                        <th>Input Temp</th>
                         <th>Input Recorded By</th>
                         <th>Output Time</th>
                         <th>Output Quantity</th>
-                        <th>Output Temp°</th>
+                        <th>Output Temp</th>
                         <th>Output Recorded By</th>
+                        <th>Actions</th>
                     </tr>
                     </thead>
                     <tfoot>
@@ -47,27 +63,33 @@
                         <th>Batch Number</th>
                         <th>Input Time</th>
                         <th>Input Quantity</th>
-                        <th>Input Temp°</th>
+                        <th>Input Temp</th>
                         <th>Input Recorded By</th>
                         <th>Output Time</th>
                         <th>Output Quantity</th>
-                        <th>Output Temp°</th>
+                        <th>Output Temp</th>
                         <th>Output Recorded By</th>
+                        <th>Actions</th>
                     </tr>
                     </tfoot>
                     <tbody>
-                    {% for form in forms %}
+                    {% for entry in entries %}
                         <tr>
-                            <td>6</td>
-                            <td>{{ form.id }}</td>
-                            <td>{{ form.name }}</td>
-                            <td>{{ form.value }}</td>
-                            <td>{{ form.age }}</td>
-                            <td>{{ form.company }}</td>
-                            <td>{{ form.name }}</td>
-                            <td>{{ form.value }}</td>
-                            <td>{{ form.age }}</td>
-                            <td>{{ form.company }}</td>
+                            <td>{{ entry.date|date("m/d/Y")}}</td>
+                            <td>{{ entry.batchNumber }}</td>
+                            <td>{{ entry.inputTime|date('H:i') }}</td>
+                            <td>{{ entry.inputQuantity }} KG</td>
+                            <td>{{ entry.inputTemperature }} °C</td>
+                            <td>{{ entry.inputRecordedBy }}</td>
+                            <td>{{ entry.outputTime|date('H:i') }}</td>
+                            <td>{{ entry.outputQuantity }} KG</td>
+                            <td>{{ entry.outputTemperature }} °C</td>
+                            <td>{{ entry.outputRecordedBy }}</td>
+                            <td>
+                                {#<a class="btn btn-datatable btn-icon btn-transparent-dark me-2" href="#"><i data-feather="check"></i></a>#}
+                                <a class="btn btn-datatable btn-icon btn-transparent-dark me-2" href="#"><i data-feather="edit"></i></a>
+                                <a class="btn btn-datatable btn-icon btn-transparent-dark" href="#"><i data-feather="trash-2"></i></a>
+                            </td>
                         </tr>
                     {% endfor %}
                     </tbody>
