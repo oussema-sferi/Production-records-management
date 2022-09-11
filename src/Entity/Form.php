@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\FormRepository;
 use Doctrine\ORM\Mapping as ORM;
+use DateTimeImmutable;
 
 #[ORM\Entity(repositoryClass: FormRepository::class)]
 class Form
@@ -11,70 +12,76 @@ class Form
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    private ?int $id = null;
+    private ?int $id;
 
     #[ORM\Column(length: 255)]
-    private ?string $name = null;
+    private ?string $reference;
 
     #[ORM\Column(length: 255)]
-    private ?string $value = null;
+    private ?string $title;
 
     #[ORM\Column]
-    private ?int $age = null;
+    private ?DateTimeImmutable $createdAt = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $company = null;
+    #[ORM\Column]
+    private ?DateTimeImmutable $updatedAt = null;
 
+    public function __construct()
+    {
+        $this->createdAt = new DateTimeImmutable();
+        $this->updatedAt = new DateTimeImmutable();
+    }
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getReference(): ?string
     {
-        return $this->name;
+        return $this->reference;
     }
 
-    public function setName(string $name): self
+    public function setReference(string $reference): self
     {
-        $this->name = $name;
+        $this->reference = $reference;
 
         return $this;
     }
 
-    public function getValue(): ?string
+    public function getTitle(): ?string
     {
-        return $this->value;
+        return $this->title;
     }
 
-    public function setValue(string $value): self
+    public function setTitle(string $title): self
     {
-        $this->value = $value;
+        $this->title = $title;
 
         return $this;
     }
 
-    public function getAge(): ?int
+    public function getCreatedAt(): ?DateTimeImmutable
     {
-        return $this->age;
+        return $this->createdAt;
     }
 
-    public function setAge(int $age): self
+    public function setCreatedAt(DateTimeImmutable $createdAt): self
     {
-        $this->age = $age;
+        $this->createdAt = $createdAt;
 
         return $this;
     }
 
-    public function getCompany(): ?string
+    public function getUpdatedAt(): ?DateTimeImmutable
     {
-        return $this->company;
+        return $this->updatedAt;
     }
 
-    public function setCompany(string $company): self
+    public function setUpdatedAt(DateTimeImmutable $updatedAt): self
     {
-        $this->company = $company;
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }
+
 }

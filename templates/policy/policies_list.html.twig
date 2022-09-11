@@ -1,0 +1,145 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dashboard{% endblock %}
+{% block stylesheets %}
+    {#<link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" type="text/css">#}
+{% endblock %}
+
+{% block body %}
+    <header class="page-header page-header-compact page-header-light border-bottom bg-white mb-4">
+        <div class="container-fluid px-4">
+            <div class="page-header-content">
+                <div class="row align-items-center justify-content-between pt-3">
+                    <div class="col-auto mb-3">
+                        <h1 class="page-header-title">
+                            <div class="page-header-icon"><i data-feather="list"></i></div>
+                            Policies List
+                        </h1>
+                    </div>
+                    <div class="col-12 col-xl-auto mb-3">
+                        <a class="btn btn-sm btn-light text-primary" href="{{ path('app_policy_create') }}">
+                            <i class="me-1" data-feather="plus"></i>
+                            Create New Policy
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Main page content-->
+    <div class="container-fluid px-4">
+        <div class="card">
+            <div class="card-body">
+                <table id="datatablesSimple">
+                    <thead>
+                    <tr>
+                        <th>Policy Reference</th>
+                        <th>Policy Title</th>
+                        <th>Download</th>
+                        <th>Created At</th>
+                        <th>Updated At</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tfoot>
+                    <tr>
+                        <th>Policy Reference</th>
+                        <th>Policy Title</th>
+                        <th>Download</th>
+                        <th>Created At</th>
+                        <th>Updated At</th>
+                        <th>Actions</th>
+                    </tr>
+                    </tfoot>
+                    <tbody>
+                    {% for policy in policies %}
+                        <tr>
+                            <td>{{ policy.reference }}</td>
+                            <td>{{ policy.title }}</td>
+                            <td>{{ policy.attachedFile }}</td>
+                            <td>{{ policy.createdAt|format_datetime() }}</td>
+                            <td>{{ policy.updatedAt|format_datetime() }}</td>
+                            <td>
+                                <a class="btn btn-datatable btn-icon btn-transparent-dark me-2" href=""><i data-feather="check"></i></a>
+                                <a class="btn btn-datatable btn-icon btn-transparent-dark me-2" href="#"><i data-feather="edit"></i></a>
+                                <a class="btn btn-datatable btn-icon btn-transparent-dark" href="#!"><i data-feather="trash-2"></i></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    {#<tr>
+                        <td>F28</td>
+                        <td>Boots on the Ground, Inclusive Thought Provoking Ideas</td>
+                        <td>20 Jun 2022</td>
+                        <td>21 Jun 2022</td>
+                        <td>
+                            <a class="btn btn-datatable btn-icon btn-transparent-dark me-2" href="blog-management-edit-post.html"><i data-feather="check"></i></a>
+                            <a class="btn btn-datatable btn-icon btn-transparent-dark me-2" href="blog-management-edit-post.html"><i data-feather="edit"></i></a>
+                            <a class="btn btn-datatable btn-icon btn-transparent-dark" href="#!"><i data-feather="trash-2"></i></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>F28</td>
+                        <td>Boots on the Ground, Inclusive Thought Provoking Ideas</td>
+                        <td>20 Jun 2022</td>
+                        <td>21 Jun 2022</td>
+                        <td>
+                            <a class="btn btn-datatable btn-icon btn-transparent-dark me-2" href="blog-management-edit-post.html"><i data-feather="check"></i></a>
+                            <a class="btn btn-datatable btn-icon btn-transparent-dark me-2" href="blog-management-edit-post.html"><i data-feather="edit"></i></a>
+                            <a class="btn btn-datatable btn-icon btn-transparent-dark" href="#!"><i data-feather="trash-2"></i></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>F28</td>
+                        <td>Boots on the Ground, Inclusive Thought Provoking Ideas</td>
+                        <td>20 Jun 2022</td>
+                        <td>21 Jun 2022</td>
+                        <td>
+                            <a class="btn btn-datatable btn-icon btn-transparent-dark me-2" href="blog-management-edit-post.html"><i data-feather="check"></i></a>
+                            <a class="btn btn-datatable btn-icon btn-transparent-dark me-2" href="blog-management-edit-post.html"><i data-feather="edit"></i></a>
+                            <a class="btn btn-datatable btn-icon btn-transparent-dark" href="#!"><i data-feather="trash-2"></i></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>F28</td>
+                        <td>Boots on the Ground, Inclusive Thought Provoking Ideas</td>
+                        <td>20 Jun 2022</td>
+                        <td>21 Jun 2022</td>
+                        <td>
+                            <a class="btn btn-datatable btn-icon btn-transparent-dark me-2" href="blog-management-edit-post.html"><i data-feather="check"></i></a>
+                            <a class="btn btn-datatable btn-icon btn-transparent-dark me-2" href="blog-management-edit-post.html"><i data-feather="edit"></i></a>
+                            <a class="btn btn-datatable btn-icon btn-transparent-dark" href="#!"><i data-feather="trash-2"></i></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>F28</td>
+                        <td>Boots on the Ground, Inclusive Thought Provoking Ideas</td>
+                        <td>20 Jun 2022</td>
+                        <td>21 Jun 2022</td>
+                        <td>
+                            <a class="btn btn-datatable btn-icon btn-transparent-dark me-2" href="blog-management-edit-post.html"><i data-feather="check"></i></a>
+                            <a class="btn btn-datatable btn-icon btn-transparent-dark me-2" href="blog-management-edit-post.html"><i data-feather="edit"></i></a>
+                            <a class="btn btn-datatable btn-icon btn-transparent-dark" href="#!"><i data-feather="trash-2"></i></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>F28</td>
+                        <td>Boots on the Ground, Inclusive Thought Provoking Ideas</td>
+                        <td>20 Jun 2022</td>
+                        <td>21 Jun 2022</td>
+                        <td>
+                            <a class="btn btn-datatable btn-icon btn-transparent-dark me-2" href="blog-management-edit-post.html"><i data-feather="check"></i></a>
+                            <a class="btn btn-datatable btn-icon btn-transparent-dark me-2" href="blog-management-edit-post.html"><i data-feather="edit"></i></a>
+                            <a class="btn btn-datatable btn-icon btn-transparent-dark" href="#!"><i data-feather="trash-2"></i></a>
+                        </td>
+                    </tr>#}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block additionalJs %}
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+    <script src="{{ asset('assets/js/datatables/datatables-simple-demo.js') }}"></script>
+
+{% endblock %}

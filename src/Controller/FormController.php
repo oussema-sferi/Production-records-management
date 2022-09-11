@@ -13,9 +13,8 @@ class FormController extends AbstractController
     #[Route('/list', name: 'app_form_list')]
     public function index(FormRepository $formRepository): Response
     {
-        $forms = $formRepository->findAll();
-        return $this->render('form/index.html.twig', [
-            'forms' => $forms,
+        return $this->render('form/forms_list.html.twig', [
+            'forms' => $formRepository->findAll()
         ]);
     }
 }

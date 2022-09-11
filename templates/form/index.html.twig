@@ -1,9 +1,12 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Dashboard{% endblock %}
+{% block stylesheets %}
+    {#<link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" type="text/css">#}
+{% endblock %}
 
 {% block body %}
-    <header class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10">
+    <header class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10 ">
         <div class="container-xl px-4">
             <div class="page-header-content pt-4">
                 <div class="row align-items-center justify-content-between">
@@ -19,33 +22,48 @@
         </div>
     </header>
     <!-- Main page content-->
-    <div class="container-xl px-4 mt-n10">
+    <div class="container-fluid px-4 mt-n10">
         <div class="card mb-4">
             <div class="card-header">Forms</div>
             <div class="card-body">
                 <table id="datatablesSimple">
                     <thead>
                     <tr>
-                        <th>Id</th>
-                        <th>Name</th>
-                        <th>Value</th>
-                        <th>Age</th>
-                        <th>Company</th>
+                        <th>Date</th>
+                        <th>Batch Number</th>
+                        <th>Input Time</th>
+                        <th>Input Quantity</th>
+                        <th>Input Temp°</th>
+                        <th>Input Recorded By</th>
+                        <th>Output Time</th>
+                        <th>Output Quantity</th>
+                        <th>Output Temp°</th>
+                        <th>Output Recorded By</th>
                     </tr>
                     </thead>
                     <tfoot>
                     <tr>
-                        <th>Id</th>
-                        <th>Name</th>
-                        <th>Value</th>
-                        <th>Age</th>
-                        <th>Company</th>
+                        <th>Date</th>
+                        <th>Batch Number</th>
+                        <th>Input Time</th>
+                        <th>Input Quantity</th>
+                        <th>Input Temp°</th>
+                        <th>Input Recorded By</th>
+                        <th>Output Time</th>
+                        <th>Output Quantity</th>
+                        <th>Output Temp°</th>
+                        <th>Output Recorded By</th>
                     </tr>
                     </tfoot>
                     <tbody>
                     {% for form in forms %}
                         <tr>
+                            <td>6</td>
                             <td>{{ form.id }}</td>
+                            <td>{{ form.name }}</td>
+                            <td>{{ form.value }}</td>
+                            <td>{{ form.age }}</td>
+                            <td>{{ form.company }}</td>
                             <td>{{ form.name }}</td>
                             <td>{{ form.value }}</td>
                             <td>{{ form.age }}</td>
@@ -57,8 +75,49 @@
             </div>
         </div>
     </div>
+    {#<div class="container-xl px-4 mt-n10">
+        <div class="card mb-4">
+            <div class="card-header">Forms</div>
+            <div class="card-body">
+                <div class="table-responsive">
+                <table class="table align-items-center table-flush">
+                    <thead class="thead-light">
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Value</th>
+                        <th>Age</th>
+                        <th>Company</th>
+                    </tr>
+                    </thead>
+                    #}{#<tfoot>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Value</th>
+                        <th>Age</th>
+                        <th>Company</th>
+                    </tr>
+                    </tfoot>#}{#
+                    <tbody class="list">
+                    {% for form in forms %}
+                        <tr>
+                            <td>{{ form.id }}</td>
+                            <td>{{ form.name }}</td>
+                            <td>{{ form.value }}</td>
+                            <td>{{ form.age }}</td>
+                            <td>{{ form.company }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                </div>
+            </div>
+        </div>
+    </div>#}
 {% endblock %}
 {% block additionalJs %}
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
     <script src="{{ asset('assets/js/datatables/datatables-simple-demo.js') }}"></script>
+
 {% endblock %}

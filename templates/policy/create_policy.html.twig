@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dashboard{% endblock %}
+{% block stylesheets %}
+    {#<link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" type="text/css">#}
+{% endblock %}
+
+{% block body %}
+    <header class="page-header page-header-compact page-header-light border-bottom bg-white mb-4">
+        <div class="container-fluid px-4">
+            <div class="page-header-content">
+                <div class="row align-items-center justify-content-between pt-3">
+                    <div class="col-auto mb-3">
+                        <h1 class="page-header-title">
+                            <div class="page-header-icon"><i data-feather="file-plus"></i></div>
+                            Create Policy
+                        </h1>
+                    </div>
+                    <div class="col-12 col-xl-auto mb-3">
+                        <a class="btn btn-sm btn-light text-primary" href="{{ path('app_policy_list') }}">
+                            <i class="me-1" data-feather="arrow-left"></i>
+                            Back to All Policies
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Main page content-->
+    <div class="container-fluid px-4">
+        <div class="row gx-4">
+            <div class="col-lg-8">
+                <div class="card mb-4">
+                    <div class="card-header">Policy Reference</div>
+                    <div class="card-body"><input class="form-control" id="policyReferenceInput" type="text" placeholder="Enter your policy reference..." /></div>
+                </div>
+                <div class="card mb-4">
+                    <div class="card-header">Policy Title</div>
+                    <div class="card-body"><input class="form-control" id="policyTitleInput" type="text" placeholder="Enter your policy title..." /></div>
+                </div>
+                <div class="card mb-4">
+                    <div class="card-header">Policy File Upload</div>
+                    <div class="card-body"><input class="form-control" id="policyFileInput" type="file" /></div>
+                </div>
+                <div class="card card-header-actions mb-4">
+                    <div class="card-header">
+                        Policy Content
+                        <i class="text-muted" data-bs-toggle="tooltip" data-bs-placement="left"></i>
+                    </div>
+                    <div class="card-body"><textarea class="lh-base form-control" type="text" placeholder="Enter your policy text..." rows="25"></textarea></div>
+                </div>
+                {#<div class="card card-header-actions mb-4 mb-lg-0">
+                    <div class="card-header">
+                        Policy Content
+                        <i class="text-muted" data-feather="info" data-bs-toggle="tooltip" data-bs-placement="left" title="Markdown is supported within the post content editor."></i>
+                    </div>
+                    <div class="card-body">
+                        <textarea id="postEditor">## Post Subheading This is the content for your post.</textarea>
+                    </div>
+                </div>#}
+            </div>
+            <div class="col-lg-4">
+                <div class="card card-header-actions">
+                    <div class="card-header">
+                        Publish
+                        <i class="text-muted" data-feather="info" data-bs-toggle="tooltip" data-bs-placement="left" title="After submitting, the policy will be saved."></i>
+                    </div>
+                    <div class="card-body">
+                        {#<div class="d-grid mb-3"><button class="fw-500 btn btn-primary-soft text-primary">Save as Draft</button></div>#}
+                        <div class="d-grid"><button class="fw-500 btn btn-primary">Save</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block additionalJs %}
+    <script src="https://unpkg.com/easymde/dist/easymde.min.js" crossorigin="anonymous"></script>
+    <script src="{{ asset('assets/js/markdown.js') }}"></script>
+{% endblock %}
